@@ -26,7 +26,13 @@ https://templatemo.com/tm-504-page-one
       </head>
 
       <body>
-        
+        <div class="d-flex justify-content-end w-100 p-3 position-absolute" style="z-index: 999; top: 0; right: 0;">
+            <div id="authArea" class="d-flex align-items-center ps-3" style="min-height: 35px; background-color: rgba(255, 255, 255, 0.8); padding: 5px 15px; border-radius: 8px;">
+                <a class="nav-icon position-relative text-decoration-none" href="login/index.html">
+                    <i class="fa fa-fw fa-user text-dark fa-lg"></i>
+                </a>
+            </div>
+        </div>
         <div class="container-fluid" id="main">
 
             <!-- Home -->
@@ -256,6 +262,34 @@ https://templatemo.com/tm-504-page-one
                 // Update the current year in copyright
                 $('.tm-current-year').text(new Date().getFullYear());          
             });
-    </script>   
+    </script>  
+           <script src="assets/js/jquery-1.11.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/templatemo.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("username");
+            location.reload();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const user = localStorage.getItem("username");
+            const authArea = document.getElementById("authArea");
+
+            if (user && authArea) {
+                authArea.innerHTML = `
+                    <span class="text-dark me-2 small" style="font-weight: 600; white-space: nowrap;">Halo, ${user}</span>
+                    <a class="nav-icon position-relative text-decoration-none me-3" href="#">
+                        <i class="fa fa-fw fa-user text-success"></i>
+                    </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="javascript:void(0)" onclick="logout()" title="Keluar">
+                        <i class="fa fa-fw fa-sign-out-alt text-danger"></i>
+                    </a>
+                `;
+            }
+        });
+    </script>
 </body>
 </html>
